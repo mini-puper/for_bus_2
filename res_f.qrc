@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/splash.png</file>
+        <file>res/for_info_bus_wiki.html</file>
+        <file>res/for_info_bus.mhtml</file>
+        <file>res/for_info_bus--.html</file>
+    </qresource>
+</RCC>
