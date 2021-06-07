@@ -22,6 +22,7 @@ Pay_bus::Pay_bus(QWidget *parent) :
 Pay_bus::~Pay_bus()
 {
     delete ui;
+    delete pvbxLayout;
     //delete p_serv;
     //delete p_client;
 }

@@ -6,9 +6,15 @@
 
 #include <QWidget>
 #include <QTcpSocket>
+#include <QtNetwork>
+#include <QTextEdit>
+#include <QLineEdit>
+#include <QBoxLayout>
+#include <QLabel>
+#include <QWidget>
+#include <QPushButton>
 
-class QTextEdit;
-class QLineEdit;
+
 
 // ======================================================================
 class Tcp_client_card : public QWidget {
@@ -17,11 +23,13 @@ private:
     QTcpSocket* m_pTcpSocket;
     QTextEdit*  m_ptxtInfo;
     QLineEdit*  m_ptxtInput;
+    QVBoxLayout* pvbxLayout;
 
     quint16     m_nNextBlockSize;
 
 public:
     Tcp_client_card(const QString& strHost, int nPort, QWidget* pwgt = 0) ;
+    ~Tcp_client_card();
 
 private slots:
     void slotReadyRead   ();

@@ -1,14 +1,6 @@
 // Виджет "Клиент" выполняет роль карты: встраивается в виджет "Оплата" (Pay_bus)
 // Связывается с сервером (картридереом), отправляет запрос на оплату
 
-#include <QtNetwork>
-#include <QTextEdit>
-#include <QLineEdit>
-#include <QBoxLayout>
-#include <QLabel>
-#include <QWidget>
-#include <QPushButton>
-
 #include "tcp_client_card.h"
 
 // ----------------------------------------------------------------------
@@ -49,12 +41,17 @@ Tcp_client_card::Tcp_client_card(const QString& strHost,
     connect(pcmd, SIGNAL(clicked()), SLOT(slotSendToServer()));
 
     //Размещение виджетов
-    QVBoxLayout* pvbxLayout = new QVBoxLayout;
+    pvbxLayout = new QVBoxLayout;
     pvbxLayout->addWidget(new QLabel("<H1>Карта клиента</H1>"));
     pvbxLayout->addWidget(m_ptxtInfo);
     pvbxLayout->addWidget(m_ptxtInput);
     pvbxLayout->addWidget(pcmd);
     setLayout(pvbxLayout);
+}
+
+Tcp_client_card::~Tcp_client_card()
+{
+    delete pvbxLayout;
 }
 
 // ----------------------------------------------------------------------
