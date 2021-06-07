@@ -42,7 +42,7 @@ Tcp_client_card::Tcp_client_card(const QString& strHost,
 
     //Размещение виджетов
     pvbxLayout = new QVBoxLayout;
-    pvbxLayout->addWidget(new QLabel("<H1>Карта клиента</H1>"));
+    pvbxLayout->addWidget(new QLabel("<H1>Карта</H1>"));
     pvbxLayout->addWidget(m_ptxtInfo);
     pvbxLayout->addWidget(m_ptxtInput);
     pvbxLayout->addWidget(pcmd);

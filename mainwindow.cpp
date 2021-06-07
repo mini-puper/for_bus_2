@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Открываем виджет Инфо по клику из настроек
     connect(p_settings.data(),SIGNAL(click_info()), this, SLOT(on_btn_info_clicked()));
 
+    connect(p_settings.data(),SIGNAL(marshrutOrReisChange(int mar, int rei, int type_msg)), p_pay.data(), SLOT(setMarshrutOrReis(int m, int r, int type_msg)));
+
 }
 
 MainWindow::~MainWindow()
@@ -92,4 +94,5 @@ void MainWindow::on_btn_settings_clicked()
       p_settings->show();
       ui->btn_settings->setStyleSheet("background-color:#FFD700");}
 }
+
 

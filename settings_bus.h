@@ -9,15 +9,9 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QLineEdit>
-#include <QFile>
-#include <QTextStream>
-#include <QStandardPaths>
-#include <QDebug>
-#include <QThread>
 #include <QSharedPointer>
 
-#include <QDate>
-#include <QTime>
+#include "print_controller.h"
 
 class Print_Controller;
 
@@ -35,6 +29,7 @@ public:
 
 signals:
     void click_info();
+    void marshrutOrReisChange(int mar, int rei);
 
 private slots:
 
@@ -51,6 +46,7 @@ private slots:
     // слот на ввод нового маршрута по сигналу от lineEdit
     void slotEditMarsh();
 
+
 private:
     Ui::Settings_bus *ui;
     void sream_print();
@@ -65,38 +61,5 @@ private:
     QSharedPointer<Print_Controller> p_print_control;
 };
 
-class Printer : public QObject
-{
-    Q_OBJECT
-
-public slots:
-    void doPrint(const int &marshrut, const int &reis);
-
-signals:
-    void resultReady(const QString &result);
-};
-
-class Print_Controller : public QObject
-{
-    Q_OBJECT
-    QThread workerThread;
-public:
-    Print_Controller() {
-        Printer *worker = new Printer;
-        worker->moveToThread(&workerThread);
-        connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
-        connect(this, &Print_Controller::operate, worker, &Printer::doPrint);
-        connect(worker, &Printer::resultReady, this, &Print_Controller::handleResults);
-        workerThread.start();
-    }
-    ~Print_Controller() {
-        workerThread.quit();
-        workerThread.wait();
-    }
-public slots:
-    void handleResults(const QString &);
-signals:
-    void operate(const int &marshrut, const int &reis);
-};
 
 #endif // SETTINGS_BUS_H

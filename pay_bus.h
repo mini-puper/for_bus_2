@@ -11,6 +11,8 @@
 #include "tcp_client_card.h"
 #include "tcp_server_reader.h"
 
+#include "print_controller.h"
+
 namespace Ui {
 class Pay_bus;
 }
@@ -26,6 +28,9 @@ public:
 signals:
     void click_pay();
 
+public slots:
+    void setMarshrutOrReis(int m, int r);
+
 private slots:
     // слот на клик по кнопке "Оплата картой"
     void on_btn_pay_card_clicked();
@@ -33,6 +38,8 @@ private slots:
     void on_btn_pay_cash_clicked();
     // слот скрывает клиент-сервер после нажатию на кнп "Оплата" главного виджета
     void pay_show();
+
+
 
 private:
     Ui::Pay_bus *ui;
@@ -45,6 +52,11 @@ private:
     QSharedPointer<Tcp_client_card> p_client;
 
     QVBoxLayout* pvbxLayout;
+
+    QSharedPointer<Print_Controller> p_print_control;
+
+    int marshrut;
+    int reis;
 
 
 };

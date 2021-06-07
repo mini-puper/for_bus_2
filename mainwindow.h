@@ -30,6 +30,7 @@ private slots:
     // слот по клику кнопки "Настройки"
     void on_btn_settings_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 

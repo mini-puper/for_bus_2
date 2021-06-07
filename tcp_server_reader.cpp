@@ -39,8 +39,8 @@ void Tcp_server_reader::slotNewConnection()
 
     connect(pClientSocket, SIGNAL(readyRead()), this, SLOT(slotReadClient()));
 
-    sendToClient(pClientSocket, "Ответ сервера: Клиент подключен!");
-    m_ptxt->append("Подключен новый клиент!");
+    sendToClient(pClientSocket, "Ответ сервера: Карта подключена!");
+    m_ptxt->append("Подключена новая карта!");
 
 }
 
@@ -66,13 +66,13 @@ void Tcp_server_reader::slotReadClient()
         in >> time >> str;
 
         QString strMessage =
-            time.toString() + " " + "Клиент отправил - " + str;
+            time.toString() + " " + "С карты списано - " + str;
         m_ptxt->append(strMessage);
 
         m_nNextBlockSize = 0;
 
         sendToClient(pClientSocket,
-                     "Ответ сервера: Получил \"" + str + " - операция выполнена!" +"\""
+                     "Ответ картридера: Получил \"" + str + " - операция выполнена!" +"\""
                     );
     }
 }

@@ -8,13 +8,17 @@ Pay_bus::Pay_bus(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Pay_bus),
     p_serv( new Tcp_server_reader(2323) ),
-    p_client( new Tcp_client_card("localhost", 2323 ))
+    p_client( new Tcp_client_card("localhost", 2323 )),
+    p_print_control(new Print_Controller)
 {
     ui->setupUi(this);
 
     // Создаём сервер и клиента
     //p_serv   = new Tcp_server_reader(2323);
     //p_client = new Tcp_client_card("localhost", 2323);
+
+    marshrut=1;
+    reis=0;
 
     connect(this, SIGNAL(click_pay()), SLOT(pay_show()));
 }
@@ -61,6 +65,12 @@ void Pay_bus::pay_show()
     }
 }
 
+void Pay_bus::setMarshrutOrReis(int m, int r)
+{
+    marshrut=m;
+    reis=r;
+}
+
 
 // слот на клик по кнопке "Оплата наличными"
 void Pay_bus::on_btn_pay_cash_clicked()
@@ -72,6 +82,8 @@ void Pay_bus::on_btn_pay_cash_clicked()
                         QMessageBox::Ok | QMessageBox::Cancel);
     int ret = msgBox1.exec();
 
+
+
     QMessageBox msgBox2(QMessageBox::Information,
                         " Оплата наличными!",
                         "Оплата прошла успешно, спасибо!",
@@ -79,7 +91,8 @@ void Pay_bus::on_btn_pay_cash_clicked()
 
     switch (ret) {
       case QMessageBox::Ok:
-          msgBox2.exec();
+          //msgBox2.exec();
+          emit p_print_control->operate(marshrut, reis, 2);
           break;
       case QMessageBox::Cancel:
           break;

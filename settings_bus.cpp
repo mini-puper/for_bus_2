@@ -65,6 +65,7 @@ void Settings_bus::on_pushButton_2_clicked()
 void Settings_bus::on_pushButton_3_clicked()
 {
     ++reis;
+    emit marshrutOrReisChange(marshrut, reis);
 
     QMessageBox msgBox1(QMessageBox::Information,
                         "Новый рейс!",
@@ -79,51 +80,6 @@ void Settings_bus::on_pushButton_3_clicked()
 void Settings_bus::on_pushButton_4_clicked()
 {
     emit p_print_control->operate(marshrut, reis);
-/*    QDate dateToday = QDate::currentDate();
-    QTime timeNow = QTime::currentTime();
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    qDebug() << +" Exists? " << QFile::exists(path + "/printer.txt");
-    QFile fileOut(path+"/printer.txt");
-
-
-    QString str="Дата:\n"+
-                 dateToday.toString()+"\n"+
-                 "Время:\n"+
-                 timeNow.toString()+"\n\n"+
-                 QString("Текущий Маршрут: №%1!\n").arg(marshrut) +
-                 QString("Количество рейсов за смену: %1!\n\n").arg(reis)+
-                 "Успешно создан файл для печати printer.txt в директории:\n"+
-                 path;
-
-    QString str2="Дата:\n"+
-                 dateToday.toString()+"\n"+
-                 "Время:\n"+
-                 timeNow.toString()+"\n\n"+
-                 QString("Текущий Маршрут: №%1!\n").arg(marshrut) +
-                 QString("Количество рейсов за смену: %1!\n\n").arg(reis)+
-                 "Ошибка!!! Не удалось создатьфайл для печати printer.txt в директории:\n"+
-                 path;
-
-    if(fileOut.open(QIODevice::WriteOnly | QIODevice::Text)){
-        QTextStream writeStream(&fileOut);
-        writeStream << str;
-        fileOut.close();
-
-        QMessageBox msgBox1(QMessageBox::Information,
-                                "Печать промежуточного отчёта!",
-                                str,
-                                QMessageBox::Ok);
-        msgBox1.exec();
-
-        }
-        else{
-            QMessageBox msgBox1(QMessageBox::Warning,
-                                "Печать промежуточного отчёта!",
-                                str2,
-                                QMessageBox::Ok);
-            msgBox1.exec();
-        }
-*/
 }
 
 
@@ -154,10 +110,11 @@ void Settings_bus::slotEditMarsh()
                             QString("Введите верный номер маршрута!"),
                             QMessageBox::Ok);
         msgBox1.exec();
+        ui->lineEdit->clear();
     }
 
 
-
+    emit marshrutOrReisChange(marshrut, reis);
     ui->lineEdit->hide();
     ui->label_2->hide();
 }
@@ -165,60 +122,3 @@ void Settings_bus::slotEditMarsh()
 
 
 
-void Printer::doPrint(const int &marshrut, const int &reis)
-{
-    QString result="ok";
-
-    QDate dateToday = QDate::currentDate();
-    QTime timeNow = QTime::currentTime();
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    qDebug() << +" Exists? " << QFile::exists(path + "/printer.txt");
-    QFile fileOut(path+"/printer.txt");
-
-
-    QString str="Дата:\n"+
-                 dateToday.toString()+"\n"+
-                 "Время:\n"+
-                 timeNow.toString()+"\n\n"+
-                 QString("Текущий Маршрут: №%1!\n").arg(marshrut) +
-                 QString("Количество рейсов за смену: %1!\n\n").arg(reis)+
-                 "Успешно создан файл для печати printer.txt в директории:\n"+
-                 path;
-
-    QString str2="Дата:\n"+
-                 dateToday.toString()+"\n"+
-                 "Время:\n"+
-                 timeNow.toString()+"\n\n"+
-                 QString("Текущий Маршрут: №%1!\n").arg(marshrut) +
-                 QString("Количество рейсов за смену: %1!\n\n").arg(reis)+
-                 "Ошибка!!! Не удалось создатьфайл для печати printer.txt в директории:\n"+
-                 path;
-
-    if(fileOut.open(QIODevice::/*ReadOnly*/WriteOnly | QIODevice::Text)){
-        QTextStream writeStream(&fileOut);
-        writeStream << str;
-        fileOut.close();
-
-        QMessageBox msgBox1(QMessageBox::Information,
-                                "Печать промежуточного отчёта!",
-                                str,
-                                QMessageBox::Ok);
-        msgBox1.exec();
-
-        }
-        else{
-            QMessageBox msgBox1(QMessageBox::Warning,
-                                "Печать промежуточного отчёта!",
-                                str2,
-                                QMessageBox::Ok);
-            msgBox1.exec();
-        }
-
-
-    emit resultReady(result);
-}
-
-void Print_Controller::handleResults(const QString &)
-{
-    /*Обработка результата*/
-}

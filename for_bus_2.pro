@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     pay_bus.cpp \
+    print_controller.cpp \
     settings_bus.cpp \
     tcp_client_card.cpp \
     tcp_server_reader.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     info_bus.h \
     mainwindow.h \
     pay_bus.h \
+    print_controller.h \
     settings_bus.h \
     tcp_client_card.h \
     tcp_server_reader.h
