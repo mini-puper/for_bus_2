@@ -45,7 +45,7 @@ void Tcp_server_reader::slotNewConnection()
 
     connect(pClientSocket, SIGNAL(readyRead()), this, SLOT(slotReadClient()));
 
-    sendToClient(pClientSocket, "Ответ сервера: Карта подключена!");
+    sendToClient(pClientSocket, "Ответ картридера: Карта подключена!");
     m_ptxt->append("Подключена новая карта!");
 
 }

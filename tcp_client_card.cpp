@@ -18,7 +18,7 @@ Tcp_client_card::Tcp_client_card(const QString& strHost,
 
     // связываемся с сервером
     m_pTcpSocket->connectToHost(strHost, nPort);
-    m_ptxtInfo->append("Подключение к серверу: ...");
+    m_ptxtInfo->append("Подключение к картридеру: ...");
     // получение сигнала подтверждения связи
     connect(m_pTcpSocket, SIGNAL(connected()), SLOT(slotConnected()));
     // приём сообщение от сервера
@@ -120,5 +120,5 @@ void Tcp_client_card::slotSendToServer()
 // подтверждение связи
 void Tcp_client_card::slotConnected()
 {
-    m_ptxtInfo->append("Подключение к серверу: успешно!");
+    m_ptxtInfo->append("Подключение к картридеру: успешно!");
 }
