@@ -24,6 +24,7 @@ private:
     QTextEdit*  m_ptxtInfo;
     QLineEdit*  m_ptxtInput;
     QVBoxLayout* pvbxLayout;
+    QPushButton* pcmd;
 
     quint16     m_nNextBlockSize;
 

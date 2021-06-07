@@ -19,6 +19,7 @@ class Tcp_server_reader : public QWidget
 public:
     explicit Tcp_server_reader(QObject *parent = nullptr);
     Tcp_server_reader(int n_potr);
+    ~Tcp_server_reader();
 
 public slots:
     virtual void slotNewConnection();

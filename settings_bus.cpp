@@ -21,7 +21,6 @@ Settings_bus::Settings_bus(QWidget *parent) :
     marshrut=1;
     reis=0;
 
-//     p_print_control = new Print_Controller();
 }
 
 Settings_bus::~Settings_bus()

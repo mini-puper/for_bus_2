@@ -30,6 +30,12 @@ Tcp_server_reader::Tcp_server_reader(int n_potr) : m_nNextBlockSize(0)
     this->setLayout(pvbxLayout);
 }
 
+Tcp_server_reader::~Tcp_server_reader()
+{
+    delete p_tcpServ;
+    delete m_ptxt;
+}
+
 // слот обработки нового  соединения, выделение сокета
 void Tcp_server_reader::slotNewConnection()
 {

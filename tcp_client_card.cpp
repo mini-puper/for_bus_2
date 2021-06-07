@@ -37,7 +37,7 @@ Tcp_client_card::Tcp_client_card(const QString& strHost,
 
 
     // отаправка сообщение серверу по кнопке оплатить
-    QPushButton* pcmd = new QPushButton("&Оплатить");
+    pcmd = new QPushButton("&Оплатить");
     connect(pcmd, SIGNAL(clicked()), SLOT(slotSendToServer()));
 
     //Размещение виджетов
@@ -52,6 +52,10 @@ Tcp_client_card::Tcp_client_card(const QString& strHost,
 Tcp_client_card::~Tcp_client_card()
 {
     delete pvbxLayout;
+    delete m_pTcpSocket;
+    delete m_ptxtInfo;
+    delete m_ptxtInput;
+    delete pcmd;
 }
 
 // ----------------------------------------------------------------------
