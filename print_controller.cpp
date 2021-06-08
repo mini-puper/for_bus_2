@@ -1,3 +1,5 @@
+// отдельный поток для печати сообщений и печати в файл
+
 #include "print_controller.h"
 
 Print_Controller::Print_Controller()

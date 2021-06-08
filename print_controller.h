@@ -1,3 +1,5 @@
+// отдельный поток для печати сообщений и печати в файл
+
 #ifndef PRINT_CONTROLLER_H
 #define PRINT_CONTROLLER_H
 
