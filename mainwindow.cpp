@@ -32,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     // Открываем виджет Инфо по клику из настроек
     connect(p_settings.data(),SIGNAL(click_info()), this, SLOT(on_btn_info_clicked()));
 
-    connect(p_settings.data(),SIGNAL(marshrutOrReisChange(int mar, int rei, int type_msg)),
-            p_pay.data(),     SLOT(setMarshrutOrReis(int m, int r, int type_msg)));
+    connect(p_settings.data(),&Settings_bus::marshrutOrReisChange,
+            p_pay.data(), &Pay_bus::setMarshrutOrReis);
 
 }
 
@@ -94,6 +94,11 @@ void MainWindow::on_btn_settings_clicked()
     if(p_settings->isHidden()){
       p_settings->show();
       ui->btn_settings->setStyleSheet("background-color:#FFD700");}
+}
+
+void MainWindow::on_test(int m, int r)
+{
+     p_pay->setMarshrutOrReis(m,r);
 }
 
 

@@ -64,13 +64,13 @@ void Settings_bus::on_pushButton_2_clicked()
 void Settings_bus::on_pushButton_3_clicked()
 {
     ++reis;
-    emit marshrutOrReisChange(marshrut, reis);
 
     QMessageBox msgBox1(QMessageBox::Information,
                         "Новый рейс!",
                         QString("Начат рейс №%1!").arg(reis),
                         QMessageBox::Ok);
     msgBox1.exec();
+    emit this->marshrutOrReisChange(marshrut, reis);//
 
 }
 
@@ -113,7 +113,8 @@ void Settings_bus::slotEditMarsh()
     }
 
 
-    emit marshrutOrReisChange(marshrut, reis);
+    emit this->marshrutOrReisChange(marshrut, reis);//
+
     ui->lineEdit->hide();
     ui->label_2->hide();
 }

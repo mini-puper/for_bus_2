@@ -30,6 +30,8 @@ private slots:
     // слот по клику кнопки "Настройки"
     void on_btn_settings_clicked();
 
+    void on_test(int m, int r);//
+
 
 private:
     Ui::MainWindow *ui;
@@ -45,7 +47,7 @@ private:
 
     QSharedPointer<Pay_bus> p_pay;
     QSharedPointer<Info_bus> p_info;
-    QSharedPointer<Settings_bus> p_settings;;
+    QSharedPointer<Settings_bus> p_settings;
 
 
 };

@@ -29,7 +29,7 @@ signals:
     void click_pay();
 
 public slots:
-    void setMarshrutOrReis(int m, int r);
+    void setMarshrutOrReis(int mar, int rei);
 
 private slots:
     // слот на клик по кнопке "Оплата картой"

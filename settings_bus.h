@@ -29,9 +29,9 @@ public:
 
 signals:
     void click_info();
-    void marshrutOrReisChange(int mar, int rei);
+    void marshrutOrReisChange(int mar, int rei);//
 
-private slots:
+public slots:
 
     // слот на клик по кнопке закрытия смены
     void on_pushButton_clicked();

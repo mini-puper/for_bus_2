@@ -66,10 +66,10 @@ void Pay_bus::pay_show()
 }
 
 //слот обновления маршрута и рейса по сигналу из настроек
-void Pay_bus::setMarshrutOrReis(int m, int r)
+void Pay_bus::setMarshrutOrReis(int mar, int rei)
 {
-    marshrut=m;
-    reis=r;
+    marshrut=mar;
+    reis=rei;
 }
 
 
